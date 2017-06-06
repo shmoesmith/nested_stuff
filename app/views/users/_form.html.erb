@@ -1,0 +1,51 @@
+<%= form_for user do |f| %>
+  <% if user.errors.any? %>
+    <h2>
+      <%= pluralize(user.errors.count, 'error') %> 
+      prohibited this user from being saved
+    </h2>
+    <ul>
+      <% user.errors.full_message.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <div>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name, required: true %>
+  </div>
+
+  <div>
+    <%= f.label :age %>
+    <%= f.number_field :age, required: true, min: 13, max: 100 %>
+  </div>
+
+  <div>
+    <%= f.label :gender %>
+    <%= f.select :gender, ['Male', 'Female', 'Other'] %>
+  </div>
+
+  <h3>User Address:</h3>
+  <%= f.fields_for :address do |a| %>
+    <%= a.label :street %> 
+    <%= a.text_field :street, required: true %>
+
+    <%= a.label :city %> 
+    <%= a.text_field :city, required: true %>
+
+    <%= a.label :state %> 
+    <%= a.text_field :state, required: true %>
+
+    <%= a.label :zip %> 
+    <%= a.text_field :zip, required: true %>
+
+  <% end %>
+  <%= f.submit %>
+  <%= link_to 'Back', users_path %>
+<% end %>

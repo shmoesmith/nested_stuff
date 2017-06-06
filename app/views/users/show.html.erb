@@ -1,0 +1,20 @@
+<div class='card grey darken-3 white-text center'>
+  <div class='card-title'>
+    <%= @user.full_name %>
+  </div>
+  <div class='card-content'>
+    <h4>Info</h4>
+    <label>Age: <%= @user.age %></label>
+    <br />
+    <label>Gender: <%= @user.gender %></label>
+    <hr />
+    <h4>Address</h4>
+    <label><%= @user.address.us_formatted %></label>
+  </div>
+  <div class='card-action'>
+    <%= link_to 'Edit', edit_user_path(@user), class: 'btn' %>
+    <%= link_to 'Delete', user_path(@user), method: :delete, class: 'btn red' %>
+  </div>
+</div>
+
+<%= link_to 'Back', users_path, class: 'btn grey' %>
